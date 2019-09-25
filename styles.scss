@@ -1,0 +1,58 @@
+// SASS Variable
+$font-size-lvl2 : 20px;
+
+%table-padding {
+    padding: 10px;
+}
+
+
+#container{
+    width:960px;
+    margin: 0 auto;
+}
+
+.center-text{
+    text-align: center;
+}
+
+#page-title{
+    font-size: 40px
+}
+
+#sub-title{
+    font-size:30px;
+}
+
+#banner-img{
+    max-width: 100%;
+}
+
+#main-info,ol,a,table,p{
+    font-size: $font-size-lvl2;
+}
+
+// SASS Nesting
+nav {
+
+    li{
+        display:inline;
+        padding: 5px;
+    }
+}
+
+
+table{
+    border:1px solid black;
+}
+
+// SASS Inheritance
+th,td{
+    @extend %table-padding;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #container{
+        width:100%;
+    }
+}
