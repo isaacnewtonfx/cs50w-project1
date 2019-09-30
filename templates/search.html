@@ -1,0 +1,78 @@
+{%extends 'layout.html' %}
+
+{% block title%} Search {%endblock%}
+
+{% block body%} 
+
+        <h1> <i class="fas fa-search"></i> Search book</h1>
+        <br>
+
+        <form method="POST" action="{{ url_for('search')}}">
+
+                {% if errors %}
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                        <ul>
+                                {% for error in errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                {% endif %}
+
+
+                {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                        <ul>
+                                {% for message in messages %}
+                                <li>{{ message }}</li>
+                                {% endfor %}
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        {% endif %}
+                {% endwith %}
+                        
+            
+            
+                <div class="form-group">
+                        <label for="searchby">Search By</label>
+
+                        <select class="form-control form-control-sm" name=searchby>
+                        <option value="isbn">ISBN Number</option>
+                        <option value="title">Book Title</option>
+                        <option value="author">Book Author</option>
+                        </select>
+                </div>
+            
+                <div class="form-group">
+                        <input type="text" class="form-control" id="searchvalue" name="searchvalue" placeholder="Enter your search value">
+                </div>
+        
+                <button type="submit" class="btn btn-primary">Search</button> 
+        </form>
+
+        <hr style = "border: 2px solid #E0E0E0"> 
+
+        {% if books %}
+
+                <ol>
+                        {% for book in books %}
+                        <li> <a href="{{ url_for('book', isbn = book[1]) }}"> {{ book[1] }}: {{ book[2] }} by {{ book[3] }} </a> </li>
+                        {% endfor %}
+                </ol>
+
+        {% else %}
+        
+        <div class="alert alert-info" role="alert">
+                <p> No results to display</p>
+        </div>
+        
+        {% endif %}
+
+{% endblock %}
