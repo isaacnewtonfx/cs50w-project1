@@ -18,7 +18,7 @@ FILES IN THE PROJECT
 
 4. README.md: This file is for telling contributors about the content of this project and how to use it
 
-5. requirements.txt
+5. requirements.txt : This file contains all the Pyton dependencies to be installed before running the application
 
 6. templates: This is a folder that contains all the html files. By convension, Flask will load html files from here
 
